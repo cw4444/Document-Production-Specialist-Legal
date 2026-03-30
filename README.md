@@ -154,6 +154,110 @@ For a safe demo, use this order:
 7. Sign out and confirm Supabase-backed history is no longer exposed.
 8. Sign back in and confirm it returns.
 
+## Demo Runbook
+
+Use this if you come back later and cannot remember how to run the thing.
+
+### Before the demo
+
+Check these first:
+
+1. `.env` exists locally and contains the Supabase URL and anon key.
+2. Supabase email auth is enabled.
+3. You still have access to the email address used for magic-link sign-in.
+4. The app builds locally:
+
+```powershell
+npm run build
+```
+
+### Start the app
+
+From the project folder:
+
+```powershell
+npm install
+npm run dev
+```
+
+Open the local URL shown in PowerShell, usually:
+
+[http://localhost:5173](http://localhost:5173)
+
+### Demo checklist
+
+Use this click order:
+
+1. Confirm the top banner says Supabase is configured.
+2. Enter your email and sign in via magic link if needed.
+3. Show the saved house-style profile area.
+4. Upload one `.docx` first.
+5. Show:
+   - the processing status
+   - the issue summary
+   - the generated report / cleaned doc buttons
+6. Open the Supabase batch history panel.
+7. Open one stored report or cleaned file from history.
+8. If you want the stronger version, upload 2-3 `.docx` files together and show the batch zip flow.
+9. Sign out to show the remote data is protected.
+
+### What to say in plain English
+
+Use this script if you want a calm explanation:
+
+- "This automates the repetitive cleanup layer of legal document production instead of making someone fix Word formatting by hand."
+- "It processes one or many `.docx` files, checks multiple internal Word parts, and applies house-style rules."
+- "It flags things that are easy to miss late at night, like stale footer details, numbering drift, and structural inconsistencies."
+- "It stores profiles, reports, and batch history in Supabase so the workflow is reusable rather than one-off."
+
+### Best demo files
+
+Good choices:
+
+- a short NDA
+- a simple letter template
+- a document with obvious stale footer text
+- a batch of 2-3 small legal docs
+
+Avoid for the first demo:
+
+- giant files
+- corrupted `.docx`
+- anything confidential
+- anything that is not actually a real `.docx`
+
+### If something goes wrong
+
+Quick recovery order:
+
+1. Refresh the browser.
+2. Make sure you are still signed in.
+3. Check the error banner text in the app.
+4. Run:
+
+```powershell
+npm run build
+```
+
+5. Restart the dev server:
+
+```powershell
+npm run dev
+```
+
+6. If Supabase-backed actions fail, confirm:
+   - the storage bucket exists
+   - the migration SQL has been applied
+   - your email auth session is active
+
+### Fast memory jog
+
+If you only remember three things, remember these:
+
+1. `npm run dev`
+2. sign in with magic link
+3. upload a real `.docx`
+
 ## Build
 
 ```powershell
