@@ -45,6 +45,13 @@ for insert
 to authenticated
 with check (owner_user_id = auth.uid());
 
+create policy "authenticated users update own batch_runs"
+on public.batch_runs
+for update
+to authenticated
+using (owner_user_id = auth.uid())
+with check (owner_user_id = auth.uid());
+
 drop policy if exists "allow read batch_documents" on public.batch_documents;
 drop policy if exists "allow write batch_documents" on public.batch_documents;
 

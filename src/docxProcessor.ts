@@ -312,7 +312,7 @@ export async function processDocx(file: File, options: ProcessingOptions): Promi
     manualBreaksCount += manualBreakMatches.length
     paragraphsCount += paragraphs.length
 
-    const paragraphBuffer: string[] = []
+    const keepParagraph: boolean[] = []
     let blankStreak = 0
 
     for (const paragraph of paragraphs) {
@@ -322,6 +322,7 @@ export async function processDocx(file: File, options: ProcessingOptions): Promi
         blankStreak += 1
         if (blankStreak > 1) {
           blankParagraphsCollapsed += 1
+          keepParagraph.push(false)
           continue
         }
       } else {
@@ -332,14 +333,14 @@ export async function processDocx(file: File, options: ProcessingOptions): Promi
         mainParagraphTexts.push(stripped)
       }
 
-      paragraphBuffer.push(paragraph)
+      keepParagraph.push(true)
     }
 
     let paragraphIndex = 0
     const collapsedXml =
-      paragraphBuffer.length === paragraphs.length
+      keepParagraph.every(Boolean)
         ? cleanedXml
-        : cleanedXml.replace(PARAGRAPH_PATTERN, () => paragraphBuffer[paragraphIndex++] ?? '')
+        : cleanedXml.replace(PARAGRAPH_PATTERN, (match) => keepParagraph[paragraphIndex++] ? match : '')
 
     const normalizedXml = collapsedXml.replace(TAB_PATTERN, '<w:t xml:space="preserve">    </w:t>')
     zip.file(path, normalizedXml)
@@ -439,7 +440,7 @@ export async function processDocx(file: File, options: ProcessingOptions): Promi
   if (availablePaths.length > 1) {
     issues.push(
       createIssue(
-        'smart-quote-mix',
+        'multi-part-processed',
         'info',
         'Multiple Word parts processed',
         `Cleanup covered ${availablePaths.length} content files including headers, footers, comments, or notes where present.`,

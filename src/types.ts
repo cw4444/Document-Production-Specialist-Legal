@@ -17,6 +17,7 @@ export type IssueCode =
   | 'manual-line-break-heavy'
   | 'smart-quote-mix'
   | 'header-footer-watchlist'
+  | 'multi-part-processed'
 
 export interface DocumentIssue {
   id: string
