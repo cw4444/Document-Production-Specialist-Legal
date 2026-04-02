@@ -288,4 +288,7 @@ This keeps the prototype isolated from `main` until it is ready.
 - The prototype is intentionally frontend-heavy for speed of iteration; production hardening would likely move parts of the storage / persistence flow server-side.
 
 ## License
-This software is currently not licensed for commercial use. If you’d like to use this in a business setting or install it professionally, please contact me at cw4444@gmail.com
+
+This project is proprietary. You may not use, copy, modify, redistribute, deploy, or install it for commercial or client use without prior written permission.
+
+Commercial licenses are available. For business use, professional installation, or deployment enquiries, contact: **cw4444@gmail.com**
