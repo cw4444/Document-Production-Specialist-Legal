@@ -271,7 +271,3 @@ npm run build
 - Stored files are scoped to the signed-in user via private storage paths and signed URLs.
 - The prototype is intentionally frontend-heavy for speed of iteration; production hardening would likely move parts of the storage / persistence flow server-side.
 
-## License
-
-This project is proprietary. You may not use, copy, modify, redistribute, deploy, or install it for commercial or client use without prior written permission.
-
